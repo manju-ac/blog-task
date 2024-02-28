@@ -5,7 +5,7 @@ import styled, { css, keyframes } from 'styled-components';
 export const App = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  height: 100vh;
 `;
 
 export const Container = styled.div`

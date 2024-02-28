@@ -9,6 +9,17 @@ export type Filter = {
   sortBy: string;
 };
 
+export const getPostSlugs = async () => {
+  const postSlugs = await db
+    .select({ title: posts.title })
+    .from(posts)
+    .then(records =>
+      records.map(record => record.title.toLowerCase().replaceAll(' ', '-'))
+    );
+
+  return postSlugs;
+};
+
 export const getPosts = async (filter: Filter) => {
   const query: Parameters<typeof db.query.posts.findMany>[0] = {};
 

@@ -9,7 +9,7 @@ const loaderRotateKeyFrames = keyframes`
 `;
 
 export const LoaderWrapper = styled.div`
-  height: 50dvh;
+  height: 50vh;
   display: grid;
   place-items: center;
 

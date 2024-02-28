@@ -20,7 +20,7 @@ export const Sidebar = styled.aside<{ $isOpen: boolean }>`
   position: fixed;
   left: 0;
   top: 4rem;
-  height: calc(100dvh - 4rem);
+  height: calc(100vh - 4rem);
   width: 70%;
   transform: translateX(-100%);
   padding: 1rem;
@@ -55,7 +55,7 @@ export const SidebarBackdrop = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   left: 0;
   top: 4rem;
-  height: calc(100dvh - 4rem);
+  height: calc(100vh - 4rem);
   width: 100%;
   z-index: 2;
   backdrop-filter: blur(10px);

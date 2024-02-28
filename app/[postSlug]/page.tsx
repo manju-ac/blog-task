@@ -5,9 +5,14 @@ import AnimatedImage from '@/components/ui/animated-image';
 import Avatar from '@/components/ui/avatar';
 import Icon from '@/components/ui/icon';
 import { getFormattedDate } from '@/utils/date';
-import { getPostBySlug } from '@/utils/post-service';
+import { getPostBySlug, getPostSlugs } from '@/utils/post-service';
 import ViewCounter from './_components/view-counter';
 import * as Styled from './page.styled';
+
+export const generateStaticParams = async () => {
+  const postSlugs = await getPostSlugs();
+  return postSlugs.map(postSlug => ({ postSlug }));
+};
 
 const BlogPostPage = async ({ params }: { params: { postSlug: string } }) => {
   const post = await getPostBySlug(params.postSlug);
