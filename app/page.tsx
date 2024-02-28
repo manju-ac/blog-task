@@ -1,5 +1,6 @@
 import { getPosts, getTotalPosts } from '@/utils/post-service';
-import BlogList from '../components/blog-list';
+// import BlogList from '../components/blog-list';
+import BlogList from '@/components/blog-list';
 import Hero from '../components/hero';
 
 export default async function Home({
@@ -15,16 +16,15 @@ export default async function Home({
   const page = +searchParams.page || 1;
   const sortBy = searchParams.sort;
 
-  console.log(page, sortBy, query);
+  const totalPosts = await getTotalPosts({ query, page, sortBy });
 
-  const totalBlogs = await getTotalPosts({ query, page, sortBy });
-
-  const blogs = await getPosts({ query, page, sortBy });
+  const posts = await getPosts({ query, page, sortBy });
 
   return (
     <>
       <Hero />
-      <BlogList blogs={blogs} totalBlogs={totalBlogs} />
+      <BlogList posts={posts} totalPosts={totalPosts} />
+      {/* <Link href='http://localhost:3000/vita'>Click</Link> */}
     </>
   );
 }

@@ -4,7 +4,8 @@ import { skeletonBase } from '@/app/global.styled';
 import styled, { css } from 'styled-components';
 
 export const ViewCounter = styled.span<{ $skeleton: boolean }>`
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
 
   ${({ $skeleton }) =>
     $skeleton &&

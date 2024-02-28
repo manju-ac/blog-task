@@ -46,8 +46,9 @@ export const getPosts = async (filter: Filter) => {
         content: record.content,
         imageUrl: record.imageUrl,
         createdAt: record.createdAt,
-        author: record.author.name,
-        tags: record.tags.map(tagItem => tagItem.tag.name)
+        author: { name: record.author.name, imageUrl: record.author.imageUrl },
+        tags: record.tags.map(tagItem => tagItem.tag.name),
+        totalViews: record.totalViews
       }))
     );
 
@@ -85,8 +86,12 @@ export const getPostBySlug = async (slug: string) => {
           content: record.content,
           imageUrl: record.imageUrl,
           createdAt: record.createdAt,
-          author: record.author.name,
-          tags: record.tags.map(tagItem => tagItem.tag.name)
+          author: {
+            name: record.author.name,
+            imageUrl: record.author.imageUrl
+          },
+          tags: record.tags.map(tagItem => tagItem.tag.name),
+          totalViews: record.totalViews
         }
     );
 
@@ -102,4 +107,27 @@ export const updatePostViewBySlug = async (slug: string) => {
     .then(records => records[0]);
 
   return post;
+};
+
+export const getTopPosts = async () => {
+  const posts = await db.query.posts
+    .findMany({
+      with: { author: true, tags: { with: { tag: true } } },
+      limit: 10,
+      orderBy: post => desc(post.totalViews)
+    })
+    .then(records =>
+      records.map(record => ({
+        id: record.id,
+        title: record.title,
+        content: record.content,
+        imageUrl: record.imageUrl,
+        createdAt: record.createdAt,
+        author: { name: record.author.name, imageUrl: record.author.imageUrl },
+        tags: record.tags.map(tagItem => tagItem.tag.name),
+        totalViews: record.totalViews
+      }))
+    );
+
+  return posts;
 };

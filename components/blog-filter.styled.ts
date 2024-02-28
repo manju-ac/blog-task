@@ -27,7 +27,7 @@ export const BlogFilter = styled.form`
   }
 `;
 
-export const BlogSearchInput = styled.input`
+export const BlogFilterSearchInput = styled.input`
   padding: 0.5rem;
   font: inherit;
   border-radius: 0.5rem;
@@ -39,7 +39,7 @@ export const BlogSearchInput = styled.input`
   }
 `;
 
-export const BlogSort = styled.div`
+export const BlogFilterSort = styled.div`
   position: relative;
 
   select {

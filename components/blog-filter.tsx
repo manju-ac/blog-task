@@ -1,11 +1,11 @@
 'use client';
 
-import { ChangeEventHandler, useEffect, useState } from 'react';
 import { ArrowDownNarrowWideIcon } from 'lucide-react';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 
-import * as Styled from './blog-filter.styled';
-import useDebounce from '@/hooks/use-debounce';
 import { SORT_OPTIONS, SortBy } from '@/constants';
+import useDebounce from '@/hooks/use-debounce';
+import * as Styled from './blog-filter.styled';
 
 type BlogFilterProps = {
   query: string;
@@ -39,12 +39,12 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
 
   return (
     <Styled.BlogFilter>
-      <Styled.BlogSearchInput
+      <Styled.BlogFilterSearchInput
         placeholder='Search'
         value={searchQuery}
         onChange={handleSearch}
       />
-      <Styled.BlogSort>
+      <Styled.BlogFilterSort>
         <select value={sortBy} onChange={handleSort}>
           {SORT_OPTIONS.map(sortOption => (
             <option value={sortOption.value} key={sortOption.value}>
@@ -53,7 +53,7 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
           ))}
         </select>
         <ArrowDownNarrowWideIcon />
-      </Styled.BlogSort>
+      </Styled.BlogFilterSort>
     </Styled.BlogFilter>
   );
 };

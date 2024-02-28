@@ -12,7 +12,8 @@ const nextConfig = {
       {
         hostname: 'loremflickr.com'
       },
-      { hostname: 'picsum.photos' }
+      { hostname: 'picsum.photos' },
+      { hostname: 'images.unsplash.com' }
     ]
   }
 };

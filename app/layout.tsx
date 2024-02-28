@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Urbanist } from 'next/font/google';
 
-import { Container, Main } from './global.styled';
+import { App, Container, Main } from './global.styled';
 import './globals.css';
 import StyledComponentsRegistry from '@/lib/styled-components/registry';
 import Header from '../components/header';
+import Sidebar from '@/components/sidebar';
+import Footer from '@/components/footer';
 
-const font = Inter({ subsets: ['latin'] });
+const font = Urbanist({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'My Blog',
@@ -22,10 +24,14 @@ export default function RootLayout({
     <StyledComponentsRegistry>
       <html lang='en'>
         <body className={font.className}>
-          <Container>
+          <App>
             <Header />
-            <Main>{children}</Main>
-          </Container>
+            <Sidebar />
+            <Container>
+              <Main>{children}</Main>
+            </Container>
+            <Footer />
+          </App>
         </body>
       </html>
     </StyledComponentsRegistry>

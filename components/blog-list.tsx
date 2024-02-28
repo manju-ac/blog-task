@@ -4,15 +4,15 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import qs from 'qs';
 
 import { SortBy } from '@/constants';
-import { Blog } from '@/types';
-import BlogCard from './blog-card';
+import { Post } from '@/types';
 import BlogFilter from './blog-filter';
 import * as Styled from './blog-list.styled';
 import PaginationBar from './pagination-bar';
+import PostCard from './post-card';
 
 type BlogListProps = {
-  blogs: Blog[];
-  totalBlogs: number;
+  posts: Post[];
+  totalPosts: number;
 };
 
 const getQueryString = (
@@ -28,7 +28,6 @@ const getQueryString = (
   }
 ) => {
   const searchParamsObj = qs.parse(searchParams.toString());
-  console.log('UPDATEEEE', query, page, sortBy);
 
   if (query || query === '') {
     searchParamsObj.query = query.toString() || undefined;
@@ -43,7 +42,7 @@ const getQueryString = (
   return qs.stringify(searchParamsObj);
 };
 
-const BlogList: React.FC<BlogListProps> = ({ blogs, totalBlogs }) => {
+const BlogList: React.FC<BlogListProps> = ({ posts, totalPosts }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -80,31 +79,33 @@ const BlogList: React.FC<BlogListProps> = ({ blogs, totalBlogs }) => {
   };
 
   return (
-    <Styled.BlogListWrapper>
+    <section>
       <BlogFilter
         query={currentQuery}
         onSearch={handleSearchChange}
         sortBy={currentSortBy}
         onSort={handleSortChange}
       />
-      {blogs.length > 0 ? (
+      {posts.length > 0 ? (
         <>
           <Styled.BlogList>
-            {blogs.map(blog => (
-              <BlogCard key={blog.id} data={blog} />
+            {posts.map(post => (
+              <PostCard key={post.id} data={post} />
             ))}
           </Styled.BlogList>
           <PaginationBar
-            totalItems={totalBlogs}
+            totalItems={totalPosts}
             itemsPerPage={6}
             currentPage={currentPage}
             onChange={handlePageChange}
           />
         </>
       ) : (
-        <Styled.NoResultsMessage>No Blog Posts found!</Styled.NoResultsMessage>
+        <Styled.BlogListNoResultsMessage>
+          No Blog Posts found!
+        </Styled.BlogListNoResultsMessage>
       )}
-    </Styled.BlogListWrapper>
+    </section>
   );
 };
 

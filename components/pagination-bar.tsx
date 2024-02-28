@@ -30,22 +30,22 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
 
   return (
     <Styled.PaginationBar>
-      <Styled.PaginationButton
+      <Styled.PaginationBarButton
         variant='ghost'
         onClick={handlePageChange.bind(null, 1)}
         disabled={currentPage === 1}
       >
         <ChevronFirstIcon />
-      </Styled.PaginationButton>
-      <Styled.PaginationButton
+      </Styled.PaginationBarButton>
+      <Styled.PaginationBarButton
         variant='ghost'
         onClick={handlePageChange.bind(null, currentPage - 1)}
         disabled={currentPage === 1}
       >
         <ChevronLeftIcon />
-      </Styled.PaginationButton>
+      </Styled.PaginationBarButton>
       {[...Array(totalPages)].map((_, index) => (
-        <Styled.PaginationButton
+        <Styled.PaginationBarButton
           variant='ghost'
           key={index}
           onClick={handlePageChange.bind(null, index + 1)}
@@ -53,22 +53,22 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
           disabled={currentPage === index + 1}
         >
           {index + 1}
-        </Styled.PaginationButton>
+        </Styled.PaginationBarButton>
       ))}
-      <Styled.PaginationButton
+      <Styled.PaginationBarButton
         variant='ghost'
         onClick={handlePageChange.bind(null, currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         <ChevronRightIcon />
-      </Styled.PaginationButton>
-      <Styled.PaginationButton
+      </Styled.PaginationBarButton>
+      <Styled.PaginationBarButton
         variant='ghost'
         onClick={handlePageChange.bind(null, totalPages)}
         disabled={currentPage === totalPages}
       >
         <ChevronLastIcon />
-      </Styled.PaginationButton>
+      </Styled.PaginationBarButton>
     </Styled.PaginationBar>
   );
 };

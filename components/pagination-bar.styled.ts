@@ -1,6 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
+
 import Button from './ui/button';
 
 export const PaginationBar = styled.ul`
@@ -10,7 +11,7 @@ export const PaginationBar = styled.ul`
   margin: 2rem 0;
 `;
 
-export const PaginationButton = styled(Button).attrs({ variant: 'ghost' })<{
+export const PaginationBarButton = styled(Button).attrs({ variant: 'ghost' })<{
   $active?: boolean;
 }>`
   & > svg {

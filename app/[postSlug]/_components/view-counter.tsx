@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 
 import * as Styled from './view-counter.styled';
+import Icon from '@/components/ui/icon';
+import { EyeIcon } from 'lucide-react';
 
 type ViewCounterProps = {
   postSlug: string;
@@ -25,7 +27,14 @@ const ViewCounter: React.FC<ViewCounterProps> = ({ postSlug }) => {
 
   return (
     <Styled.ViewCounter $skeleton={totalViews === undefined}>
-      {totalViews !== undefined && `${totalViews} views`}
+      {totalViews === undefined ? (
+        ''
+      ) : (
+        <>
+          <Icon icon={EyeIcon} size='sm' />
+          {totalViews || 0}
+        </>
+      )}
     </Styled.ViewCounter>
   );
 };

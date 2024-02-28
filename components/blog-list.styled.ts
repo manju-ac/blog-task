@@ -2,8 +2,6 @@
 
 import styled from 'styled-components';
 
-export const BlogListWrapper = styled.section``;
-
 export const BlogList = styled.ul`
   display: grid;
   gap: 2rem;
@@ -17,7 +15,7 @@ export const BlogList = styled.ul`
   }
 `;
 
-export const NoResultsMessage = styled.p`
+export const BlogListNoResultsMessage = styled.p`
   font-size: 1.2rem;
   text-align: center;
   margin: 3rem 0;
