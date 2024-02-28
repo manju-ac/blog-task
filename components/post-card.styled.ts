@@ -78,7 +78,7 @@ export const PostCard = styled.li<{
           column-gap: 2rem;
 
           & ${PostCardImageWrapper} {
-            height: 15rem;
+            width: 40%;
             aspect-ratio: 16/9;
           }
 
@@ -133,6 +133,7 @@ export const PostCardImageWrapper = styled.div`
 `;
 
 export const PostCardImage = styled(Image)<{ $isLoaded: boolean }>`
+  object-fit: cover;
   transition: scale 300ms ease-out, filter 500ms ease-out;
 
   ${({ $isLoaded }) =>
@@ -175,7 +176,6 @@ export const PostCardTags = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  height: 1.5rem;
   margin: 0 0 0.75rem;
 
   & > li {
