@@ -63,18 +63,15 @@ const BlogList: React.FC<BlogListProps> = ({ posts, totalPosts }) => {
 
   const handleSearchChange = (query: string) => {
     if (query.toLowerCase() !== currentQuery.toLowerCase()) {
-      console.log('search change >>>>', query, currentQuery);
       updateBlogs({ query: query, page: 1 });
     }
   };
 
   const handleSortChange = (sortBy: SortBy) => {
-    console.log('sort change >>>>>>');
     updateBlogs({ sortBy });
   };
 
   const handlePageChange = (page: number) => {
-    console.log('page change >>>>>');
     updateBlogs({ page });
   };
 

@@ -20,9 +20,15 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
   sortBy,
   onSort
 }) => {
-  const [searchQuery, setSearchQuery] = useState(query);
+  const [searchQuery, setSearchQuery] = useState<string>(query);
 
   const debouncedSearchQuery = useDebounce(searchQuery);
+
+  useEffect(() => {
+    if (!query) {
+      setSearchQuery('');
+    }
+  }, [query]);
 
   useEffect(() => {
     onSearch(debouncedSearchQuery);
