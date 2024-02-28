@@ -1,7 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
-    styledComponents: true
+    styledComponents: {
+      ssr: true,
+      displayName: false,
+      fileName: false
+    }
+  },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'loremflickr.com'
+      },
+      { hostname: 'picsum.photos' }
+    ]
   }
 };
 

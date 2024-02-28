@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: hsl(30 30% 98%);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
