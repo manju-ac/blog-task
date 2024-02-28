@@ -2,6 +2,8 @@ import PostCard from '@/components/post-card';
 import { getTopPosts } from '@/utils/post-service';
 import * as Styled from './page.styled';
 
+export const dynamic = 'force-dynamic';
+
 const TopVisitedPostsPage = async () => {
   const posts = await getTopPosts();
 
