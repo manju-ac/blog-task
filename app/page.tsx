@@ -1,5 +1,4 @@
 import { getPosts, getTotalPosts } from '@/utils/post-service';
-// import BlogList from '../components/blog-list';
 import BlogList from '@/components/blog-list';
 import Hero from '../components/hero';
 
@@ -24,7 +23,6 @@ export default async function Home({
     <>
       <Hero />
       <BlogList posts={posts} totalPosts={totalPosts} />
-      {/* <Link href='http://localhost:3000/vita'>Click</Link> */}
     </>
   );
 }

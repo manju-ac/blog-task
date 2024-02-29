@@ -12,9 +12,7 @@ const Header = () => {
     <Styled.Header $isSidebarOpen={isSidebarOpen}>
       <Styled.HeaderContentWrapper>
         <SidebarToggleButton />
-        <Styled.HeaderLogo href='/' replace>
-          Blog
-        </Styled.HeaderLogo>
+        <Styled.HeaderLogo href='/'>Blog</Styled.HeaderLogo>
         <Styled.HeaderOptions>
           <NavRoutes />
         </Styled.HeaderOptions>

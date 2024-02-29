@@ -25,12 +25,6 @@ const BlogFilter: React.FC<BlogFilterProps> = ({
   const debouncedSearchQuery = useDebounce(searchQuery);
 
   useEffect(() => {
-    if (!query) {
-      setSearchQuery('');
-    }
-  }, [query]);
-
-  useEffect(() => {
     onSearch(debouncedSearchQuery);
   }, [debouncedSearchQuery, onSearch]);
 

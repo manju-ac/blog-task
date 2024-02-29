@@ -7,6 +7,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { Skeleton } from '../app/global.styled';
 import Avatar from './ui/avatar';
 import Icon from './ui/icon';
+import { screen } from '@/app/mixins.styled';
 
 const edgeAnimationKeyFrames = keyframes`
   100% {
@@ -62,33 +63,33 @@ export const PostCard = styled.li<{
 
   ${({ $variant }) =>
     $variant === 'lg' &&
-    css`
-      @media (min-width: 640px) {
-        & ${PostCardLink} {
-          display: flex;
-          column-gap: 2rem;
+    screen['sm']`
+    ${css`
+      & ${PostCardLink} {
+        display: flex;
+        column-gap: 2rem;
+        border-top-right-radius: initial;
+        border-bottom-left-radius: inherit;
+
+        & ${PostCardImageWrapper} {
+          width: 40%;
+          aspect-ratio: 16/9;
           border-top-right-radius: initial;
           border-bottom-left-radius: inherit;
+        }
 
-          & ${PostCardImageWrapper} {
-            width: 40%;
-            aspect-ratio: 16/9;
-            border-top-right-radius: initial;
-            border-bottom-left-radius: inherit;
-          }
+        & ${PostCardInfo} {
+          flex: 1;
 
-          & ${PostCardInfo} {
-            flex: 1;
-
-            & > ${PostCardAvatar} {
-              left: -6rem;
-              bottom: 1rem;
-              top: initial;
-            }
+          & > ${PostCardAvatar} {
+            left: -6rem;
+            bottom: 1rem;
+            top: initial;
           }
         }
       }
     `}
+  `}
 `;
 
 export const PostCardLink = styled(Link)`

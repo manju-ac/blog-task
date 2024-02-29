@@ -2,6 +2,8 @@
 
 import styled, { css } from 'styled-components';
 
+import { screen } from '@/app/mixins.styled';
+
 export const SidebarToggleButton = styled.button<{ $isOpen: boolean }>`
   width: 1.25rem;
   aspect-ratio: 1;
@@ -60,7 +62,7 @@ export const SidebarToggleButton = styled.button<{ $isOpen: boolean }>`
       }
     `}
 
-  @media (min-width: 640px) {
+  ${screen['sm']`
     display: none;
-  }
+  `}
 `;

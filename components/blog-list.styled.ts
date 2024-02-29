@@ -2,17 +2,19 @@
 
 import styled from 'styled-components';
 
+import { screen } from '@/app/mixins.styled';
+
 export const BlogList = styled.ul`
   display: grid;
   gap: 2rem;
 
-  @media (min-width: 640px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  ${screen['sm']`
+    grid-template-columns: repeat(2, 1fr)
+  `}
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  ${screen['md']`
+    grid-template-columns: repeat(3, 1fr)
+  `}
 `;
 
 export const BlogListNoResultsMessage = styled.p`

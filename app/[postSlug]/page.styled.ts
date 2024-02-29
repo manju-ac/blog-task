@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
+import { screen } from '../mixins.styled';
+
 export const PostPageInfo = styled.section`
   margin-bottom: 3rem;
 `;
@@ -33,10 +35,10 @@ export const PostPageAdditionalInfo = styled.div`
   color: #7a7a7a;
   font-weight: 400;
 
-  @media (min-width: 640px) {
+  ${screen['sm']`
     flex-direction: row;
     align-items: center;
-  }
+  `}
 `;
 
 export const PostPageAuthor = styled.div`
@@ -53,10 +55,6 @@ export const PostPageDateAndViews = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 0.8rem;
-
-  @media (min-width: 640px) {
-    /* flex-direction: row; */
-  }
 `;
 
 export const PostPageImageWrapper = styled.div`
@@ -73,7 +71,7 @@ export const PostPageImage = styled(Image)`
 
 export const PostPageContent = styled.section`
   h2 {
-    margin: 3rem 0;
+    margin: 2rem 0;
   }
 
   ul {

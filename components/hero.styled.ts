@@ -2,6 +2,8 @@
 
 import styled from 'styled-components';
 
+import { screen } from '@/app/mixins.styled';
+
 export const Hero = styled.section`
   padding: 2rem 1rem;
   position: relative;
@@ -9,9 +11,9 @@ export const Hero = styled.section`
   overflow: hidden;
   margin-bottom: 2rem;
 
-  @media (min-width: 640px) {
+  ${screen['sm']`
     padding: 3rem 1rem;
-  }
+  `}
 `;
 
 export const HeroText = styled.h1`
@@ -20,7 +22,7 @@ export const HeroText = styled.h1`
   text-align: center;
   margin: 0;
 
-  @media (min-width: 640px) {
+  ${screen['sm']`
     font-size: 4rem;
-  }
+  `}
 `;

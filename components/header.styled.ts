@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
 import { Container } from '@/app/global.styled';
+import { screen } from '@/app/mixins.styled';
 
 export const Header = styled.header<{ $isSidebarOpen: boolean }>`
   position: fixed;
@@ -33,7 +33,7 @@ export const HeaderContentWrapper = styled(Container)`
   column-gap: 1rem;
 `;
 
-export const HeaderLogo = styled(Link)`
+export const HeaderLogo = styled.a`
   font-size: 1.5rem;
   text-decoration: none;
   color: currentColor;
@@ -42,10 +42,10 @@ export const HeaderLogo = styled(Link)`
 export const HeaderOptions = styled.div`
   display: none;
 
-  @media (min-width: 640px) {
+  ${screen['sm']`
     display: flex;
     flex: 1;
     align-items: center;
     justify-content: flex-end;
-  }
+  `}
 `;

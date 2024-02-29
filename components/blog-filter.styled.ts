@@ -1,5 +1,6 @@
 'use client';
 
+import { screen } from '@/app/mixins.styled';
 import styled from 'styled-components';
 
 export const BlogFilter = styled.form`
@@ -13,7 +14,7 @@ export const BlogFilter = styled.form`
     align-self: flex-end;
   }
 
-  @media (min-width: 640px) {
+  ${screen['sm']`
     flex-direction: row;
     gap: 2rem;
 
@@ -24,7 +25,7 @@ export const BlogFilter = styled.form`
     & > :last-child {
       flex: 1.5;
     }
-  }
+  `}
 `;
 
 export const BlogFilterSearchInput = styled.input`

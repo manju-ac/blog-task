@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter, Urbanist } from 'next/font/google';
+import { Urbanist } from 'next/font/google';
 
-import { App, Container, Main } from './global.styled';
-import './globals.css';
+import Footer from '@/components/footer';
+import Sidebar from '@/components/sidebar';
 import StyledComponentsRegistry from '@/lib/styled-components/registry';
 import Header from '../components/header';
-import Sidebar from '@/components/sidebar';
-import Footer from '@/components/footer';
+import { App, Container, Main } from './global.styled';
+import './globals.css';
 
 const font = Urbanist({ subsets: ['latin'] });
 
