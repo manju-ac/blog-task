@@ -22,7 +22,7 @@ export const Button = styled.button<{ $variant?: Variant }>`
           transition: background-color 200ms;
 
           &:not(:disabled):hover {
-            background-color: hsl(195 20% 80% / 0.2);
+            background-color: hsl(var(--color-accent) / 0.4);
           }
         `;
     }

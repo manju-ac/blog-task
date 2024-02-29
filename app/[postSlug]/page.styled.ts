@@ -21,7 +21,7 @@ export const PostPageTags = styled.ul`
   & > li {
     padding: 0.2rem 0.5rem;
     border-radius: 0.5rem;
-    border: 1px solid #000030;
+    box-shadow: var(--box-shadow-sm);
   }
 `;
 
@@ -57,11 +57,6 @@ export const PostPageDateAndViews = styled.div`
   @media (min-width: 640px) {
     /* flex-direction: row; */
   }
-`;
-
-export const PostPagePublishedDate = styled.span`
-  display: flex;
-  align-items: center;
 `;
 
 export const PostPageImageWrapper = styled.div`

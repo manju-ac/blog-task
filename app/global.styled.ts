@@ -17,7 +17,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  margin: 6rem 0 2rem;
+  margin: 6rem 0 3rem;
   height: 100%;
 `;
 
@@ -31,6 +31,11 @@ const skeletonFade = keyframes`
 `;
 
 export const skeletonBase = css`
+  background-color: hsl(195 30% 80% / 0.4);
+  animation: ${skeletonFade} 1s infinite alternate;
+`;
+
+export const Skeleton = styled.p`
   background-color: hsl(195 30% 80% / 0.4);
   animation: ${skeletonFade} 1s infinite alternate;
 `;

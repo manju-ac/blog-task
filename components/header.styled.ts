@@ -41,9 +41,11 @@ export const HeaderLogo = styled(Link)`
 
 export const HeaderOptions = styled.div`
   display: none;
-  flex: 1;
 
   @media (min-width: 640px) {
-    display: block;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
   }
 `;

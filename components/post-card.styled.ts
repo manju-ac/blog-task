@@ -2,21 +2,44 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-import { skeletonBase } from '../app/global.styled';
+import { Skeleton } from '../app/global.styled';
 import Avatar from './ui/avatar';
+import Icon from './ui/icon';
+
+const edgeAnimationKeyFrames = keyframes`
+  100% {
+    --rotate: 360deg
+  }
+`;
 
 export const PostCard = styled.li<{
-  $skeleton: boolean;
   $variant?: 'sm' | 'lg';
 }>`
-  overflow: hidden;
   transition: opacity 200ms ease-out, box-shadow 200ms ease-out,
     border-radius 200ms ease-out;
+  position: relative;
+  background-color: #ffffff;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    opacity: 0;
+
+    background-image: repeating-conic-gradient(
+      from var(--rotate, 30deg),
+      hsl(var(--color-accent)) 25%,
+      transparent,
+      hsl(var(--color-accent)) 75%
+    );
+    border-radius: inherit;
+    z-index: -1;
+    transition: opacity 200ms;
+  }
 
   &:hover {
-    box-shadow: 1px 1px 6px 1px #00000030;
     border-radius: 1rem;
 
     ${() => css`
@@ -30,44 +53,12 @@ export const PostCard = styled.li<{
         }
       }
     `}
+
+    &::before {
+      opacity: 1;
+      animation: ${edgeAnimationKeyFrames} 7s linear infinite;
+    }
   }
-
-  ${({ $skeleton }) =>
-    $skeleton &&
-    css`
-      & ${PostCardImageWrapper} {
-        ${skeletonBase}
-      }
-
-      & ${PostCardTitle} {
-        ${skeletonBase}
-        height: 1.25rem;
-        border-radius: 0.25rem;
-      }
-
-      & ${PostCardTags} > li {
-        ${skeletonBase}
-        height: 1.75rem;
-        min-width: 5rem;
-      }
-
-      & ${PostCardAuthor} {
-        ${skeletonBase}
-        height: 1.5rem;
-      }
-
-      & ${PostCardPublishedDate} {
-        ${skeletonBase}
-        height: 1.5rem;
-        width: 35%;
-      }
-
-      & ${PostCardTotalViews} {
-        ${skeletonBase}
-        height: 1.5rem;
-        width: 35%;
-      }
-    `}
 
   ${({ $variant }) =>
     $variant === 'lg' &&
@@ -76,10 +67,14 @@ export const PostCard = styled.li<{
         & ${PostCardLink} {
           display: flex;
           column-gap: 2rem;
+          border-top-right-radius: initial;
+          border-bottom-left-radius: inherit;
 
           & ${PostCardImageWrapper} {
             width: 40%;
             aspect-ratio: 16/9;
+            border-top-right-radius: initial;
+            border-bottom-left-radius: inherit;
           }
 
           & ${PostCardInfo} {
@@ -100,6 +95,8 @@ export const PostCardLink = styled(Link)`
   display: block;
   text-decoration: none;
   color: currentColor;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 `;
 
 export const PostCardImageWrapper = styled.div`
@@ -107,6 +104,8 @@ export const PostCardImageWrapper = styled.div`
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
 
   &::before {
     content: '';
@@ -122,7 +121,7 @@ export const PostCardImageWrapper = styled.div`
     content: 'Read More ›››';
     font-size: 0.8rem;
     width: max-content;
-    color: #ffffff;
+    color: color-mix(in lab, hsl(var(--color-accent)), white 20%);
     position: absolute;
     bottom: 0.75rem;
     left: 50%;
@@ -161,6 +160,16 @@ export const PostCardAvatar = styled(Avatar).attrs({
   right: 1rem;
 `;
 
+export const PostCardTitleSkeleton = styled(Skeleton).attrs({ as: 'h4' })`
+  height: 1.25rem;
+  border-radius: 0.25rem;
+  margin: 0 0 0.2rem;
+
+  &:last-of-type {
+    margin: 0 0 0.5rem;
+  }
+`;
+
 export const PostCardTitle = styled.h4`
   flex: 1;
   font-weight: 500;
@@ -177,22 +186,30 @@ export const PostCardTags = styled.ul`
   flex-wrap: wrap;
   gap: 1rem;
   margin: 0 0 0.75rem;
-
-  & > li {
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.15rem 0.5rem;
-    border-radius: 1rem;
-    background-color: hsl(198 93% 60% / 0.25);
-  }
 `;
 
-export const PostCardAuthor = styled.p`
+export const PostTagSkeleton = styled(Skeleton)`
+  height: 1.75rem;
+  min-width: 5rem;
+  border-radius: 1rem;
+`;
+
+export const PostCardTag = styled(Icon).attrs({ size: 'sm' })`
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 1rem;
+  background-color: hsl(var(--color-accent) / 0.25);
+`;
+
+export const PostCardAuthorSkeleton = styled(Skeleton)`
+  height: 1.5rem;
+  margin: 1rem 0 0.75rem;
+`;
+
+export const PostCardAuthor = styled(Icon).attrs({ size: 'sm' })`
   font-size: 0.9rem;
-  font-weight: 600;
-  color: #4a4a4a;
+  font-weight: 500;
+  color: hsl(var(--color-gray-600));
   display: flex;
   align-items: center;
   margin: 1rem 0 0.75rem;
@@ -203,18 +220,12 @@ export const PostCardAdditionalInfo = styled.div`
   justify-content: space-between;
 `;
 
-export const PostCardPublishedDate = styled.p`
-  display: flex;
-  align-items: center;
-  color: #7a7a7a;
-  font-size: 0.8rem;
-  margin: 0;
+export const PostCardDateViewsSkeleton = styled(Skeleton)`
+  height: 1.5rem;
+  width: 35%;
 `;
 
-export const PostCardTotalViews = styled.p`
-  display: flex;
-  align-items: center;
-  color: #7a7a7a;
-  font-size: 0.8rem;
+export const PostCardDateViews = styled(Icon).attrs({ size: 'sm' })`
+  color: hsl(var(--color-gray-600));
   margin: 0;
 `;

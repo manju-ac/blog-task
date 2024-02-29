@@ -1,10 +1,39 @@
+:root {
+  --color-accent: 190 95% 55%;
+  --color-bg: 20 0% 100%;
+  --color-gray-600: 215 13.8% 34.1%;
+
+  --border-rad-sm: 0.25rem;
+  --border-rad-md: 5rem;
+  --border-rad-lg: 1rem;
+
+  --box-shadow-sm: 0 0 1px 1px #00000030;
+}
+
 * {
   box-sizing: border-box;
 }
 
+@property --rotate {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 body {
   margin: 0;
-  background-color: hsl(30 30% 98%);
+  /* background-color: hsl(30 30% 98%); */
+  background-color: hsl(var(--color-bg));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 ul {

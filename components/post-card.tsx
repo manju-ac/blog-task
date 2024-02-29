@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { Post } from '@/types';
 import { getFormattedDate } from '@/utils/date';
 import * as Styled from './post-card.styled';
-import Icon from './ui/icon';
 
 type PostCardProps = {
   data: Post;
@@ -17,7 +16,7 @@ const PostCard: React.FC<PostCardProps> = ({ data, variant }) => {
   const [isImageLoading, setIsImageLoading] = useState(true);
 
   return (
-    <Styled.PostCard $skeleton={isImageLoading} $variant={variant}>
+    <Styled.PostCard $variant={variant}>
       <Styled.PostCardLink
         href={`/${encodeURI(data.title.toLowerCase().replaceAll(' ', '-'))}`}
       >
@@ -34,54 +33,47 @@ const PostCard: React.FC<PostCardProps> = ({ data, variant }) => {
         </Styled.PostCardImageWrapper>
         <Styled.PostCardInfo>
           <Styled.PostCardAvatar src={data.author.imageUrl!} size='sm' />
-          <Styled.PostCardTitle>
-            {isImageLoading ? '' : data.title}
-          </Styled.PostCardTitle>
+          {isImageLoading ? (
+            <>
+              <Styled.PostCardTitleSkeleton />
+              <Styled.PostCardTitleSkeleton />
+            </>
+          ) : (
+            <Styled.PostCardTitle>{data.title}</Styled.PostCardTitle>
+          )}
           <Styled.PostCardTags>
             {data.tags.map(tag => (
               <li key={tag}>
                 {isImageLoading ? (
-                  ''
+                  <Styled.PostTagSkeleton />
                 ) : (
-                  <>
-                    <Icon icon={TagIcon} size='sm' />
-                    {tag}
-                  </>
+                  <Styled.PostCardTag icon={TagIcon} label={tag} />
                 )}
               </li>
             ))}
           </Styled.PostCardTags>
-          <Styled.PostCardAuthor>
-            {isImageLoading ? (
-              ''
-            ) : (
-              <>
-                <Icon icon={UserIcon} size='sm' />
-                {data.author.name}
-              </>
-            )}
-          </Styled.PostCardAuthor>
+          {isImageLoading ? (
+            <Styled.PostCardAuthorSkeleton />
+          ) : (
+            <Styled.PostCardAuthor icon={UserIcon} label={data.author.name} />
+          )}
           <Styled.PostCardAdditionalInfo>
-            <Styled.PostCardPublishedDate suppressHydrationWarning>
-              {isImageLoading ? (
-                ''
-              ) : (
-                <>
-                  <Icon icon={CalendarDaysIcon} size='sm' />
-                  {getFormattedDate(data.createdAt)}
-                </>
-              )}
-            </Styled.PostCardPublishedDate>
-            <Styled.PostCardTotalViews>
-              {isImageLoading ? (
-                ''
-              ) : (
-                <>
-                  <Icon icon={EyeIcon} size='sm' />
-                  {data.totalViews || 0}
-                </>
-              )}
-            </Styled.PostCardTotalViews>
+            {isImageLoading ? (
+              <Styled.PostCardDateViewsSkeleton />
+            ) : (
+              <Styled.PostCardDateViews
+                icon={CalendarDaysIcon}
+                label={getFormattedDate(data.createdAt)}
+              />
+            )}
+            {isImageLoading ? (
+              <Styled.PostCardDateViewsSkeleton />
+            ) : (
+              <Styled.PostCardDateViews
+                icon={EyeIcon}
+                label={data.totalViews || 0}
+              />
+            )}
           </Styled.PostCardAdditionalInfo>
         </Styled.PostCardInfo>
       </Styled.PostCardLink>

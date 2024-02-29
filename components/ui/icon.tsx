@@ -4,14 +4,22 @@ import * as Styled from './icon.styled';
 
 type IconProps = {
   icon: LucideIcon;
-  size?: 'sm' | 'lg';
+  label?: string | number;
+  size?: 'sm';
+  className?: string;
 };
 
-const Icon: React.FC<IconProps> = ({ icon: CustomLucideIcon, size }) => {
+const Icon: React.FC<IconProps> = ({
+  icon: CustomLucideIcon,
+  label,
+  size,
+  className
+}) => {
   return (
-    <Styled.IconWrapper $size={size}>
+    <Styled.Icon $size={size} $label={label} className={className}>
       <CustomLucideIcon />
-    </Styled.IconWrapper>
+      {label}
+    </Styled.Icon>
   );
 };
 

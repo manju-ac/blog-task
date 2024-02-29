@@ -25,17 +25,10 @@ const ViewCounter: React.FC<ViewCounterProps> = ({ postSlug }) => {
       .catch(err => {});
   }, [postSlug]);
 
-  return (
-    <Styled.ViewCounter $skeleton={totalViews === undefined}>
-      {totalViews === undefined ? (
-        ''
-      ) : (
-        <>
-          <Icon icon={EyeIcon} size='sm' />
-          {totalViews || 0}
-        </>
-      )}
-    </Styled.ViewCounter>
+  return totalViews === undefined ? (
+    <Styled.ViewCounterSkeleton />
+  ) : (
+    <Icon icon={EyeIcon} size='sm' label={totalViews} />
   );
 };
 

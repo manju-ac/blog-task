@@ -37,10 +37,11 @@ const BlogPostPage = async ({ params }: { params: { postSlug: string } }) => {
             <span>{post.author.name}</span>
           </Styled.PostPageAuthor>
           <Styled.PostPageDateAndViews>
-            <Styled.PostPagePublishedDate>
-              <Icon icon={CalendarDaysIcon} size='sm' />
-              {getFormattedDate(post.createdAt)}
-            </Styled.PostPagePublishedDate>
+            <Icon
+              icon={CalendarDaysIcon}
+              size='sm'
+              label={getFormattedDate(post.createdAt)}
+            />
             <ViewCounter postSlug={params.postSlug} />
           </Styled.PostPageDateAndViews>
         </Styled.PostPageAdditionalInfo>
